@@ -29,6 +29,14 @@ class ShipTest < Minitest::Test
     assert_equal string of a letter and a number, ship.generate_computer_ships_position
   end
 
+  def test_ship_can_be_sunk
+    ship = Ship.new
+    assert_equal false, ship.sunk
+    ship.sunk?
+    assert_equal true, ship.sunk
+  end
+
+
 end
 
 =begin
