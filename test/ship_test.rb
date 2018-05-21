@@ -36,6 +36,11 @@ class ShipTest < Minitest::Test
     assert_equal true, ship.sunk
   end
 
+  def test_if_ship_is_hit_touch_counter_goes_up
+    ship = Ship.new
+    assert_equal 1, ship.hit
+  end
+
 
 end
 
