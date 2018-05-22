@@ -15,7 +15,7 @@ class GridTest < Minitest::Test
     assert_equal  ["A1", "A2", "A3", "A4",
                    "B1", "B2", "B3", "B4",
                    "C1", "C2", "C3", "C4",
-                   "D1", "D2", "D3", "D4"], grid.grid_layout[0].keys
+                   "D1", "D2", "D3", "D4"], grid.grid_layout.keys
   end
 
   def test_it_has_a_collection_of_position
@@ -36,14 +36,13 @@ class GridTest < Minitest::Test
     x = 2
     y = "A"
 
-    assert_equal ["A2", "A3"], grid.place_computer_ship_length_2(2, x, y)
+    assert_equal 2, grid.place_computer_ship_length_2(2, x, y).length
   end
 
   def test_change_square_as_occupied
-    skip
     grid = Grid.new
     square = Square.new
-    assert grid.change_square_as_occupied(square)
+    assert grid.change_square_as_occupied
   end
 
   def test_place_computer_ship_cruise
@@ -51,6 +50,6 @@ class GridTest < Minitest::Test
     x = 3
     y = "C"
 
-    assert_equal 3, grid.place_computer_ship_cruiser
+    assert_equal 3, grid.place_computer_ship_cruiser.length
   end
 end
