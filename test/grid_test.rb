@@ -42,14 +42,23 @@ class GridTest < Minitest::Test
   def test_change_square_as_occupied
     grid = Grid.new
     square = Square.new
-    assert grid.change_square_as_occupied
+    destroyer_location = ["C2", "D2"]
+    assert grid.change_square_as_occupied(destroyer_location)
+  end
+
+  def test_square_cruiser_to_occupy
+    grid = Grid.new
+    square = Square.new
+    cruiser_location = ["A2", "A3", "A4"]
+    assert grid.change_occupy_cruiser_ship(cruiser_location)
   end
 
   def test_place_computer_ship_cruise
     grid = Grid.new
     x = 3
     y = "C"
+    ship_length = 3
 
-    assert_equal 3, grid.place_computer_ship_cruiser.length
+    assert_equal 3, grid.place_computer_ship_cruiser(ship_length, x, y).length
   end
 end
