@@ -28,46 +28,58 @@ class Grid
     return array_first_position
   end
 
-  def place_computer_ship(ship_length, x = 0, y = 0)
+  def place_computer_ship_length_2(ship_length = 2, x = 0, y = 0)
+    destroyer_location = []
     first_po = find_first_random_position_computer_ship
     x = first_po[1]
     y = first_po[0]
-    # ship_length_min_1 = ship_length - 1
-    # second_position = []
-    # ship_length_min_1.times do
-    if @position.include?((y.ord + 1).chr)
-      so = (y.ord + 1).chr
-    else
-      so = (y.ord - 1).chr
-    end
+     if @position.include?((y.ord + 1).chr)
+       so = (y.ord + 1).chr
+     else
+       so = (y.ord - 1).chr
+     end
     y = so
     x = first_po[1]
-    # require 'pry' ;binding.pry
     second = (y + x).chars.join
-    @ship_location << first_po.join
-    @ship_location << second
-    return @ship_location
-
-
-
-
-    # if @position.include?((x.ord + 1).chr)
-    #   (x.ord + 1).chr
-    # else
-    #   (x.ord - 1).chr
-    # end
+    destroyer_location << first_po.join
+    destroyer_location << second
+    return destroyer_location
   end
 
-      # first_square = @grid_layout.map do |element|
-      #   element.sample
-      # end
-      # first_element_array = first_square.shift
-      # @ship_location << first_element_array
-      # array_strings = first_element_array.split(//)
-      # x = array_strings[1]
-      # y = array_strings[0]
-      # @coordinates = ([x, y])
-      # @ship_location.push([x, y])
-    # end
+  # def change_square_as_occupied(square)
+  #   destroyer_location1 = place_computer_ship_length_2
+  #   square.occupy = false
+  #   # destroyer_location1.join.occupy == true
+  #   square.occupy = true if destroyer_location1.square
+  #   require 'pry' ; binding.pry
+  #   # end
+  #   return true
+  # end
+
+  def place_computer_ship_cruiser(ship_length = 3, x = 0, y = 0)
+    cruiser_location = []
+    first_position_possible = ["A1", "A2", "B1", "B2", "C1", "C2", "D1", "D2"]
+    destroyer_location1 = place_computer_ship_length_2
+    string_first = first_position_possible.sample
+    if string_first == destroyer_location1
+      first_position_possible.sample
+    end
+    first_po_array = string_first.split(//)
+    x = first_po_array[1]
+    x_integer = x.to_i
+    y = first_po_array[0]
+    repeat_length = ship_length - 1
+    repeat_length.times do
+      (x_integer + 1)
+    end
+    last_x = (x_integer + 1)
+    y = first_po_array[0]
+    cruiser = (y + last_x.to_s).chars.join
+    cruiser_location << first_po_array.join("")
+    cruiser_location << cruiser
+    return cruiser_location
+    # require 'pry' ; binding.pry
+# missing one element for 3 length ship
+  end
 
 end

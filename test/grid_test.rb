@@ -30,16 +30,27 @@ class GridTest < Minitest::Test
     assert_instance_of Array, grid.find_first_random_position_computer_ship
     assert_equal 2, grid.find_first_random_position_computer_ship.length
   end
+
   def test_place_computer_ship
     grid = Grid.new
     x = 2
     y = "A"
 
-    assert_equal ["A2", "A3"], grid.place_computer_ship(2, x, y)
+    assert_equal ["A2", "A3"], grid.place_computer_ship_length_2(2, x, y)
+  end
+
+  def test_change_square_as_occupied
+    skip
+    grid = Grid.new
+    square = Square.new
+    assert grid.change_square_as_occupied(square)
+  end
+
+  def test_place_computer_ship_cruise
+    grid = Grid.new
+    x = 3
+    y = "C"
+
+    assert_equal 3, grid.place_computer_ship_cruiser
   end
 end
-=begin
-1 ) method to remember previous shots in array and iterate through to see if it contains already same user input and then store user_input or computer here
-2 ) has to know about class ship
-3 ) update grid after round
-=end
