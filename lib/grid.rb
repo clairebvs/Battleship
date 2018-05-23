@@ -14,13 +14,6 @@ class Grid
     @ship_location = []
   end
 
-  # def create_empty_grid
-  #   @grid_layout = {"A1" => Square.new, "A2" => Square.new, "A3" => Square.new, "A4" => Square.new,
-  #    "B1" => Square.new, "B2" => Square.new, "B3" => Square.new, "B4" => Square.new,
-  #    "C1" => Square.new, "C2" => Square.new, "C3" => Square.new, "C4" => Square.new,
-  #    "D1" => Square.new, "D2" => Square.new, "D3" => Square.new, "D4" => Square.new}
-  # end
-
   def find_first_random_position_computer_ship
     first_position = @position.sample
     array_first_position = first_position.split(//)
@@ -32,14 +25,14 @@ class Grid
     x = first_po[1]
     y = first_po[0]
     if @position.include?((y.ord + 1).chr + x)
-      so = (y.ord + 1).chr
+      second_po = (y.ord + 1).chr
     else
-      so = (y.ord - 1).chr
+      second_po = (y.ord - 1).chr
     end
-    y = so
+    y = second_po
     x = first_po[1]
     second = (y + x).chars.join
-    destroyer_location << first_po
+    destroyer_location << first_po.join
     destroyer_location << second
     change_square_as_occupied(destroyer_location)
     return destroyer_location
@@ -61,6 +54,7 @@ class Grid
     x_integer = x.to_i
     y = first_po_array[0]
     x_integers = []
+    # require 'pry' ; binding.pry
     ship_length.times do |index|
       x_integers << (x_integer + index)
     end
@@ -80,6 +74,8 @@ class Grid
     cruiser_location.map do |element|
       @grid_layout[element].change_occupy
     end
+    # require 'pry' ; binding.pry
+    return @grid_layout
   end
 
   def placing_all_comp_ships
@@ -92,6 +88,7 @@ class Grid
 
 
   def display_map_computer
+    puts "=========="
     puts "   1 2 3 4"
     puts "A #{@grid_layout["A1"].result} #{@grid_layout["A2"].result} #{@grid_layout["A3"].result} #{@grid_layout["A4"].result}"
     puts "B #{@grid_layout["B1"].result} #{@grid_layout["B2"].result} #{@grid_layout["B3"].result} #{@grid_layout["B4"].result}"
