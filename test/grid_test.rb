@@ -33,10 +33,9 @@ class GridTest < Minitest::Test
 
   def test_place_computer_ship
     grid = Grid.new
-    x = 2
-    y = "A"
+    first_po = "B2"
 
-    assert_equal 2, grid.place_computer_ship_length_2(2, x, y).length
+    assert_equal 2, grid.place_computer_ship_length_2(first_po).length
   end
 
   def test_change_square_as_occupied
@@ -55,10 +54,8 @@ class GridTest < Minitest::Test
 
   def test_place_computer_ship_cruise
     grid = Grid.new
-    x = 3
-    y = "C"
     ship_length = 3
 
-    assert_equal 3, grid.place_computer_ship_cruiser(ship_length, x, y).length
+    assert_equal 3, grid.place_computer_ship_cruiser(ship_length).length
   end
 end

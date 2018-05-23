@@ -39,7 +39,7 @@ class Grid
     y = so
     x = first_po[1]
     second = (y + x).chars.join
-    destroyer_location << first_po.join
+    destroyer_location << first_po
     destroyer_location << second
     change_square_as_occupied(destroyer_location)
     return destroyer_location
