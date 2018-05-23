@@ -38,4 +38,11 @@ class GridPlayerTest < Minitest::Test
     user_input = "A2 A3"
     assert_equal "This is an invalid input. Enter coordinates like this A1 A2", grid_player.valid_cruiser_input(user_input)
   end
+
+  def test_check_if_valid_coor_for_two_unit_ship
+    grid_player = GridPlayer.new
+    user_input = "A2 A4"
+    assert_equal "A", "1", "A", "2", grid_player.valid_coord_for_two_positions(user_input)
+  end
+
 end
