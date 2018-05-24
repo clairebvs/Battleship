@@ -32,11 +32,6 @@ until user_input == "q" || user_input == "quit"
       user_input = gets.chomp.to_s
       grid_player.valid_cruiser_input(user_input)
       grid_player.display_map_player
-
       # method to fire shot call and then turn computer time
-      # display computer board 
-
+      # display computer board
     end
-
-
-# user_input = gets.chomp.to_s
