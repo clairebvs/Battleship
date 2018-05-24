@@ -1,6 +1,4 @@
 class Ship
-# get rid of class ship
-
   attr_reader :length,
               :sunk
 
@@ -13,7 +11,6 @@ class Ship
   end
 
   def sunk?
-    # @sunk = true
     if @length == @touched_by_hit
       @sunk = true
     end
@@ -26,5 +23,4 @@ class Ship
   def length_ship
     @length = @start_space + @end_space
   end
-
 end

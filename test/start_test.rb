@@ -3,7 +3,6 @@ require 'minitest/pride'
 require './lib/start'
 
 class StartTest < Minitest::Test
-
   def test_it_exists
     start = Start.new
 
@@ -40,22 +39,4 @@ class StartTest < Minitest::Test
 
     assert_equal expected, start.incorrect_ship_placement
   end
-
-
-
-
-
 end
-
-
-
-
-=begin
-1 ) print welcome
-2 ) gets user_input = play, instruction or quit
-3 ) if play  display instruction to place ship
-4 ) place random ship for computer
-5 ) ask for user_input to place ship
-6 ) check if valide placement if correct goes on if incorrect goes back to asking
-7 ) place player-ship on board
-=end

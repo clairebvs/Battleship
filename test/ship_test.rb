@@ -3,7 +3,6 @@ require 'minitest/pride'
 require './lib/ship'
 
 class ShipTest < Minitest::Test
-
   def test_it_exists
     ship = Ship.new
     assert_instance_of Ship, ship
@@ -40,12 +39,4 @@ class ShipTest < Minitest::Test
     ship = Ship.new
     assert_equal 1, ship.hit
   end
-
-
 end
-
-=begin
-knows about computer ship and player ship = 2 ships 2 unit long and 3 units long
-knows coordinates of ship
-knows length of ship
-=end
