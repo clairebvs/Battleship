@@ -31,9 +31,10 @@ until user_input == "q" || user_input == "quit"
       puts start.place_ship_cruiser
       user_input = gets.chomp.to_s
       grid_player.valid_cruiser_input(user_input)
-      #  ==> go to another method
-      break
-      # grid_player.valid_player_placement_input?(user_input)
+      grid_player.display_map_player
+
+      # method to fire shot call and then turn computer time
+      # display computer board 
 
     end
 
