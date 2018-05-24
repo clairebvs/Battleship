@@ -1,6 +1,3 @@
-require 'terminal-table.rb'
-require 'pry'
-
 class Grid
    attr_reader :grid_layout,
                :position
@@ -54,7 +51,6 @@ class Grid
     x_integer = x.to_i
     y = first_po_array[0]
     x_integers = []
-    # require 'pry' ; binding.pry
     ship_length.times do |index|
       x_integers << (x_integer + index)
     end
@@ -74,7 +70,6 @@ class Grid
     cruiser_location.map do |element|
       @grid_layout[element].change_occupy
     end
-    # require 'pry' ; binding.pry
     return @grid_layout
   end
 
@@ -86,8 +81,8 @@ class Grid
     change_occupy_cruiser_ship(place_cruiser)
   end
 
-
   def display_map_computer
+    puts "Computer Board"
     puts "=========="
     puts "   1 2 3 4"
     puts "A #{@grid_layout["A1"].result} #{@grid_layout["A2"].result} #{@grid_layout["A3"].result} #{@grid_layout["A4"].result}"
@@ -95,5 +90,4 @@ class Grid
     puts "C #{@grid_layout["C1"].result} #{@grid_layout["C2"].result} #{@grid_layout["C3"].result} #{@grid_layout["C4"].result}"
     puts "D #{@grid_layout["D1"].result} #{@grid_layout["D2"].result} #{@grid_layout["D3"].result} #{@grid_layout["D4"].result}"
   end
-
 end

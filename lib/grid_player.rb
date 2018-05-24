@@ -59,14 +59,6 @@ class GridPlayer
     end
   end
 
-  # def change_occupy_destroyer_square(user_input)
-  #   split_input_destroyer = user_input.split
-  #   split_input_destroyer.map do |position|
-  #     @grid_layout[position].change_occupy
-  #   end
-  #   return @grid_layout
-  # end
-
   def valid_cruiser_input(user_input)
     coord_cruiser = /[A-D][1-4]\s[A-D][1-4]\s[A-D][1-4]/
     if coord_cruiser.match?(user_input)
@@ -109,7 +101,7 @@ class GridPlayer
       end
     else
       puts "This is not a valid placement, the coordinates must represent the first and last unit of the ship such as B2 C2."
-      end
+    end
   end
 
   def display_map_player
@@ -121,6 +113,4 @@ class GridPlayer
     puts "C #{@grid_layout["C1"].result} #{@grid_layout["C2"].result} #{@grid_layout["C3"].result} #{@grid_layout["C4"].result}"
     puts "D #{@grid_layout["D1"].result} #{@grid_layout["D2"].result} #{@grid_layout["D3"].result} #{@grid_layout["D4"].result}"
   end
-
-
 end

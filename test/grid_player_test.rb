@@ -3,9 +3,7 @@ require 'minitest/pride'
 require './lib/grid_player'
 require './lib/square'
 
-
 class GridPlayerTest < Minitest::Test
-
   def test_it_exists
     grid_player = GridPlayer.new
     assert_instance_of GridPlayer, grid_player
@@ -49,5 +47,4 @@ class GridPlayerTest < Minitest::Test
     grid_player = GridPlayer.new
     assert_equal 3, grid_player.place_player_ship_destroyer.length
   end
-
 end

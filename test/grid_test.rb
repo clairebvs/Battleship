@@ -2,7 +2,7 @@ require 'minitest/autorun'
 require 'minitest/pride'
 require './lib/grid'
 require './lib/square'
-require 'pry'
+
 class GridTest < Minitest::Test
 
   def test_it_exists
