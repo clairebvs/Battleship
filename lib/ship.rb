@@ -1,4 +1,5 @@
 class Ship
+# get rid of class ship
 
   attr_reader :length,
               :sunk
