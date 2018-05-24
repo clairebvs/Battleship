@@ -45,4 +45,9 @@ class GridPlayerTest < Minitest::Test
     assert_equal "A", "1", "A", "2", grid_player.valid_coord_for_two_positions(user_input)
   end
 
+  def test_place_ship_desstroyer_on_grid
+    grid_player = GridPlayer.new
+    assert_equal 3, grid_player.place_player_ship_destroyer.length
+  end
+
 end

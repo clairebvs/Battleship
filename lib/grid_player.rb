@@ -14,72 +14,105 @@ class GridPlayer
      @valid_placement = ["A1", "A2", "A3", "A4", "B1", "B2", "B3", "B4", "C1", "C2", "C3", "C4", "D1", "D2", "D3", "D4"]
   end
 
+  def valid_destroyer_input(user_input)
+    coord_destroyer = /[A-D][1-4]\s[A-D][1-4]/
+    if coord_destroyer.match?(user_input)
+      valid_player_placement_input?(user_input)
+    else
+      puts "This is an invalid input. Enter coordinates like this A1 A2"
+      user_input = "p"
+    end
+  end
+
   def valid_player_placement_input?(user_input)
     @valid_placement = ["A1", "A2", "A3", "A4", "B1", "B2", "B3", "B4", "C1", "C2", "C3", "C4", "D1", "D2", "D3", "D4"]
     valid_input = user_input.split(" ").all? do |element|
-      valid_placement.include?(element)
+      @valid_placement.include?(element)
     end
     if valid_input
-      valid_destroyer_input(user_input)
+      valid_coord_for_two_positions(user_input)
     else
       puts "This is not a valid input"
       user_input = "p"
     end
   end
 
-  def valid_destroyer_input(user_input)
-    coord_destroyer = /[A-D][1-4]\s[A-D][1-4]/
-    valid = coord_destroyer.match(user_input)
-    if valid == user_input
-      return user_input
+  def valid_coord_for_two_positions(user_input)
+    user_input = user_input.to_s
+    split_user_input = user_input.split
+    first_coord = split_user_input[0]
+    second_coord = split_user_input[1]
+    coord_of_first_position = first_coord.chars
+    x1 = coord_of_first_position[1].to_i
+    y1 = coord_of_first_position[0]
+
+    coord_of_second_position = second_coord.chars
+    x2 = coord_of_second_position[1].to_i
+    y2 = coord_of_second_position[0]
+
+    if x2 == (x1 + 1) || y2.ord == (y1.ord + 1)
+      split_user_input.map do |position|
+        @grid_layout[position].change_occupy
+      end
     else
-      return "This is an invalid input. Enter coordinates like this A1 A2"
+     puts "This is not a valid placement, the coordinates must represent the first and last unit of the ship such as B2 C2."
     end
+  end
+
+  def change_occupy_destroyer_square(user_input)
+    split_input_destroyer = user_input.split
+    split_input_destroyer.map do |position|
+      @grid_layout[position].change_occupy
+    end
+    return @grid_layout
   end
 
   def valid_cruiser_input(user_input)
     coord_cruiser = /[A-D][1-4]\s[A-D][1-4]\s[A-D][1-4]/
-    valid = coord_cruiser.match(user_input)
-    if valid == user_input
-      user_input
+    if coord_cruiser.match?(user_input)
+      valid_player_placement_for_cruiser?(user_input)
     else
-      "This is an invalid input. Enter coordinates like this A1 A2"
+      puts "This is an invalid input. Enter coordinates like this A1 A2"
     end
   end
 
-  def valid_coord_for_two_positions(user_input)
+  def valid_player_placement_for_cruiser?(user_input)
+    @valid_placement = ["A1", "A2", "A3", "A4", "B1", "B2", "B3", "B4", "C1", "C2", "C3", "C4", "D1", "D2", "D3", "D4"]
+    valid_input = user_input.split(" ").all? do |element|
+      @valid_placement.include?(element)
+    end
+    if valid_input
+      valid_coord_for_three_positions(user_input)
+    else
+      puts "This is not a valid input"
+      user_input = "p"
+    end
+  end
+
+  def valid_coord_for_three_positions(user_input)
     user_input = user_input.to_s
-    split_user_input = user_input.to_s.split
+    split_user_input = user_input.split
     first_coord = split_user_input[0]
-    second_coord = split_user_input[1]
+    third_coord = split_user_input [2]
+
     coord_of_first_position = first_coord.chars
-    x1 = coord_of_first_position[1]
+    x1 = coord_of_first_position[1].to_i
     y1 = coord_of_first_position[0]
-    # require 'pry' ; binding.pry
 
-    coord_of_second_position = second_coord.chars
-    x2 = coord_of_second_position[1]
-    y2 = coord_of_second_position[0]
-    return x1, y1, x2, y2
-  end
+    coord_of_third_position = third_coord.chars
+    x3 = coord_of_third_position[1].to_i
+    y3 = coord_of_third_position[0]
 
-  def valid_destroyer_position(coordinates)
-    require 'pry' ; binding.pry
-    if x1 == (x2 + 1) || y1 == (y2 + 1)
-      square.chane_occupy if square.occupy
+    if x3 == (x1 + 2) || y3.ord == (y1.ord + 2)
+      # split_user_input.map do |element|
+        # if !@grid_layout[element].occupy
+
+      split_user_input.map do |position|
+        @grid_layout[position].change_occupy
+      end
     else
-      "This not a valid placement, the coordinates must represent the first and last unit of the ship such as B2 C2."
+     puts "This is not a valid placement, the coordinates must represent the first and last unit of the ship such as B2 C2."
     end
-  end
-
-  def check_if_square_is_empty_for_user_input
-    square.occupy
-    require 'pry' ; binding.pry
-    @grid_layout
-  end
-
-  def place_all_player_ships
-
   end
 
   def display_map_player
